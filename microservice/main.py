@@ -1,5 +1,7 @@
 import os
+import microservice.core.run
 
 
 if __name__ == '__main__':
-	print("hello")
+	microservice.core.run.run()
+
