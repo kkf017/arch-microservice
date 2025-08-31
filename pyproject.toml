@@ -1,5 +1,5 @@
 [project]
-name = "from-db-to-xlsx"
+name = "microservice-example"
 version = "0.1.0"
 description = "Service to convert a db into a file (xlsx)."
 authors = [
