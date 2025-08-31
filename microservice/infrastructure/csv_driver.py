@@ -33,7 +33,7 @@ def reader(filename:str)->pandas.DataFrame:
 			res = _read_xlsx(filename)
 		case _ :
 			#print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
-			logger.error(__file__,f"Error: Unknown type of file.")
+			logger.error(f"Error: Unknown type of file.")
 			raise Exception(f"Error: Unknown type of file.")
 	return res
 
@@ -57,7 +57,7 @@ def writer(filename:str, X:pandas.DataFrame)->None:
 			res = _write_xlsx(filename, X)
 		case _ :
 			#print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
-			logger.error(__file__,f"Error: Unknown type of file.")
+			logger.error(f"Error: Unknown type of file.")
 			raise Exception(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m")
 	return res
 
