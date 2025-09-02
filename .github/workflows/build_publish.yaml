@@ -1,4 +1,4 @@
-name: build_publish_bis
+name: build_publish
 on:
   workflow_dispatch:
     inputs:
