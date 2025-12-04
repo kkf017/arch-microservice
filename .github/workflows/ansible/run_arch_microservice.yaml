@@ -27,7 +27,7 @@
         dest: "{{ item.dest }}"
       loop:
         - src: ../environments/data.db
-          dest: "{{ base_path }}/arch_microservice/data/data.db"
+          dest: "{{ base_path }}{{ filepath }}"
   
     - name: pull image
       command: docker pull ghcr.io/kkf017/arch-microservice:0.1.0
