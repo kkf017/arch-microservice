@@ -1,0 +1,40 @@
+---
+- name: Run microservice
+  hosts: prod
+  become: true
+  vars:
+    base_path: /home/user/Documents
+    filepath: "{{ FILEPATH }}"
+    filename: "{{ FILENAME }}"
+    table: "{{ TABLE }}" 
+  
+  tasks:
+
+    - name: Create data subfolder
+      file:
+        path:  "{{ base_path }}/{{ item }}"
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+      loop:
+        - arch_microservice/
+        - arch_microservice/microservice
+        - arch_microservice/data
+
+    - name: copy multiple items
+      copy: 
+        src: "{{ item.src }}" 
+        dest: "{{ item.dest }}"
+      loop:
+        - src: ../environments/data.db
+          dest: "{{ base_path }}/arch_microservice/data/data.db"
+  
+    - name: pull image
+      command: docker pull ghcr.io/kkf017/arch-microservice:0.1.0
+
+    - name: launch service
+      command: docker run --name arch_microservice -d -v "{{ base_path }}/arch_microservice/:/data/arch_microservice/" -e 'DATABASE={{ filepath }}' -e 'FILEPATH={{ filename }}' -e 'TABLE={{ table }}' ghcr.io/kkf017/arch-microservice:0.1.0
+
+    - name: Time Sleep
+      ansible.builtin.pause:
+        seconds: 3

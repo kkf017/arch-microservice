@@ -1,0 +1,40 @@
+name: Run arch_microservice
+
+on:
+  workflow_dispatch:
+
+env:
+  ANSIBLE_CONFIG: ${{ github.workspace }}/.github/workflows/ansible/ansible.cfg
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+
+    - name: Set up SSH key
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
+        chmod 600 private_key.pem
+
+    - name: Install Ansible
+      run: pip install ansible
+
+    - name: Run Ansible playbook
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: False
+        FILEPATH: "/home/user/arch-microservice/files/db_test.db"
+        FILENAME: "/home/user/arch-microservice/files/db_test.xlsx"
+        TABLE: "project"
+      run: ansible-playbook  -i ${{ github.workspace }}/.github/workflows/ansible/hosts ${{ github.workspace }}/.github/workflows/ansible/run_arch_microservice.yaml --extra-vars "FILEPATH=/home/user/arch-microservice/files/db_test.db FILENAME=/home/user/arch-microservice/files/db_test.xlsx TABLE=project" --private-key private_key.pem

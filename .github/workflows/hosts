@@ -1,0 +1,2 @@
+[prod]
+IP_ADDRESS ansible_user=ubuntu
