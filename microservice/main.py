@@ -1,4 +1,5 @@
-import os
+"""Main File."""
+
 import microservice.core.run
 
 

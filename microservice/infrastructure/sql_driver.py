@@ -1,3 +1,5 @@
+"""Module to manage sql."""
+
 import os, sqlite3, hashlib
 from typing import List, Tuple, Optional, Any
 from microservice.config.setup import *
