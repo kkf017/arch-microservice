@@ -1,13 +1,14 @@
 """Module to manage xlsx,csv files."""
 
-import csv, pandas
+import csv
+import pandas
 from typing import List, Tuple
 from microservice.logging_module.handler import logger
 
 
 def _get_delimiter(filename: str) -> str:
     """Subfunction to detect delimiter in file (csv)."""
-    with open(filename, "r") as freader:
+    with open(filename, "r", encoding="utf-8") as freader:
         delimiter = str(csv.Sniffer().sniff(freader.read()).delimiter)
     return delimiter
 
@@ -19,12 +20,12 @@ def _read_csv(filename: str) -> pandas.DataFrame:
 
 def _read_xlsx(filename: str) -> pandas.DataFrame:
     """Subfunction to read a file (xlsx)."""
-    X = pandas.DataFrame([])
+    x = pandas.DataFrame([])
     try:
-        X = pandas.read_excel(filename)
+        x = pandas.read_excel(filename)
     except OSError as err:
         logger.error(__file__, f"{err}")
-    return X
+    return x
 
 
 def reader(filename: str) -> pandas.DataFrame:
@@ -38,8 +39,8 @@ def reader(filename: str) -> pandas.DataFrame:
             res = _read_xlsx(filename)
         case _:
             # print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
-            logger.error(f"Error: Unknown type of file.")
-            raise Exception(f"Error: Unknown type of file.")
+            logger.error("Error: Unknown type of file.")
+            raise Exception("Error: Unknown type of file.")
     return res
 
 
@@ -64,8 +65,8 @@ def writer(filename: str, x: pandas.DataFrame) -> None:
             res = _write_xlsx(filename, x)
         case _:
             # print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
-            logger.error(f"Error: Unknown type of file.")
-            raise Exception(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m")
+            logger.error("Error: Unknown type of file.")
+            raise Exception("\033[0;33m\n[-]Error: Unknown type of file.\033[0m")
     return res
 
 
