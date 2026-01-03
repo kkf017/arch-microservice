@@ -1,6 +1,5 @@
 """Interface between main.py and core/."""
 
-from typing import List
 from datetime import datetime
 from microservice.logging_module.handler import logger
 import microservice.core.handling_functions

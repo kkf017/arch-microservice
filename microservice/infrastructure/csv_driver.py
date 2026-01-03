@@ -1,7 +1,7 @@
 """Module to manage xlsx,csv files."""
 
-import os, sys, csv, pandas
-from typing import List, Tuple, Any
+import csv, pandas
+from typing import List, Tuple
 from microservice.logging_module.handler import logger
 
 
@@ -53,15 +53,15 @@ def _write_xlsx(filename: str, X: pandas.DataFrame) -> None:
     X.to_excel(filename, index=False)
 
 
-def writer(filename: str, X: pandas.DataFrame) -> None:
+def writer(filename: str, x: pandas.DataFrame) -> None:
     """Function to write a file (csv/xlsx)."""
     filetype = filename.split(".")[-1]
     res = pandas.DataFrame([])
     match filetype:
         case "csv":
-            res = _write_csv(filename, X)
+            res = _write_csv(filename, x)
         case "xlsx":
-            res = _write_xlsx(filename, X)
+            res = _write_xlsx(filename, x)
         case _:
             # print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
             logger.error(f"Error: Unknown type of file.")
@@ -69,6 +69,6 @@ def writer(filename: str, X: pandas.DataFrame) -> None:
     return res
 
 
-def from_db_to_dataframe(X: List[Tuple[str]], columns: List[str]) -> None:
+def from_db_to_dataframe(x: List[Tuple[str]], columns: List[str]) -> None:
     """Function to convert list (of tuples) into dataframes (pandas)."""
-    return pandas.DataFrame(X, columns=columns)
+    return pandas.DataFrame(x, columns=columns)
