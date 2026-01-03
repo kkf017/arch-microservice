@@ -1,0 +1,5 @@
+name: Test code
+
+on:
+  workflow_dispatch:
+
