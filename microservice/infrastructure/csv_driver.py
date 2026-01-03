@@ -15,7 +15,7 @@ def _get_delimiter(filename: str) -> str:
 
 def _read_csv(filename: str) -> pandas.DataFrame:
     """Subfunction to read a file (csv)."""
-    return pandas.read_csv(filename, sep=get_delimiter(filename))
+    return pandas.read_csv(filename, sep=_get_delimiter(filename))
 
 
 def _read_xlsx(filename: str) -> pandas.DataFrame:
@@ -24,7 +24,7 @@ def _read_xlsx(filename: str) -> pandas.DataFrame:
     try:
         x = pandas.read_excel(filename)
     except OSError as err:
-        logger.error(__file__, f"{err}")
+        logger.error(f"{err}")
     return x
 
 
