@@ -19,8 +19,6 @@ jobs:
 
     - name: Install Python dependencies
       uses: py-actions/py-dependency-install@v4
-      with:
-        path: "${{ github.workspace }}/requirements.txt"
 
     - name: Install Pylint
       run: pip install pylint
