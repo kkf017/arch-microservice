@@ -18,7 +18,7 @@ jobs:
         python-version: '3.11'
 
     - name: Install packages
-      run: pip install -r ${{ github.workspace }}/requirements.txt
+      run: pip install -r requirements.txt
 
     - name: Install Pylint
       run: pip install pylint
