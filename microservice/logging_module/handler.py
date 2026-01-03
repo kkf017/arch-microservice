@@ -1,8 +1,7 @@
 """Interface to manage logging."""
 
 import logging
-import timezone
-from datetime import datetime
+from datetime import datetime, timezone
 import microservice.logging_module.handling_logger
 
 
