@@ -26,3 +26,10 @@ COPY microservice ./microservice
 
 #CMD python -m service_notifier.main
 CMD [ "python",  "-m", "microservice.main" ]
+
+# podman run
+# -v "/home/user/Repositories/arch_microservice_1/helpers:/data/arch_microservice_1/helpers"
+# -e DATABASE=/data/arch_microservice_1/helpers/mock.db
+# -e FILEPATH=/data/arch_microservice_1/helpers/mock.xlsx
+# -e TABLE='project' ghcr.io/kkf017/arch_microservice_1:0.1.0
+# 'pull {{ filepath }}/{{ filename }} --dest-path=/data{{ filepath }}'
