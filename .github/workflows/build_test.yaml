@@ -7,30 +7,25 @@ jobs:
   check:
     name: "Test static code"
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
 
     steps:
+
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      #with:
-        #python-version: '3.11'
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
 
-    #- name: Install Python dependencies
-      #uses: py-actions/py-dependency-install@v4
-      #with:
-        #path: "${{ github.workspace }}/requirements.txt"
-        #update-pip: "false"
-        #update-setuptools: "false"
-        #update-wheel: "false"
-
-    - name: Install libraries
-      run: pip install pandas
-
-    - name: Install Pylint
-      run: pip install pylint
-
-    - name: Run Pylint
+    - name: Install dependencies
       run: |
-         pylint $(git ls-files '*.py')
+        python -m pip install --upgrade pip
+        pip install pylint
+
+    - name: Analysing the code with pylint
+      run: |
+        pylint $(git ls-files '*.py')
