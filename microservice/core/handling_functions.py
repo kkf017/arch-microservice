@@ -21,6 +21,6 @@ def function() -> None:
         x = microservice.infrastructure.sql_driver.request(
             DATABASE, f"""SELECT * FROM {TABLE};"""
         )
-        x = microservice.infrastructure.csv_driver.from_db_to_dataframe(x, columns)
-        microservice.infrastructure.csv_driver.writer(FILEPATH, x)
+        frame = microservice.infrastructure.csv_driver.from_db_to_dataframe(x, columns)
+        microservice.infrastructure.csv_driver.writer(FILEPATH, frame)
         logger.info("File created successfully.")
