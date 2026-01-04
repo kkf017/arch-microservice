@@ -1,4 +1,4 @@
-name: Run arch_microservice
+name: deploy
 
 on:
   workflow_dispatch:
