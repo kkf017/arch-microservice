@@ -1,4 +1,4 @@
-name: Test code
+name: build_test
 
 on:
   workflow_dispatch:
