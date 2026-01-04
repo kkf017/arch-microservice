@@ -1,5 +1,8 @@
-import os 
+"""Module to manage paths and environment variables."""
 
-DATABASE = os.getenv('DATABASE', "/data/arch-microservice/files/db_test.db")
-FILEPATH = os.getenv('FILEPATH', "/data/arch-microservice/files/db_test.xlsx")
-TABLE = os.getenv('TABLE', "project")
+import os
+
+MAIN_DIR = os.getenv("ROOT_DIR", os.getcwd())
+DATABASE = os.getenv("DATABASE", os.path.join(MAIN_DIR, "helpers", "mock.db"))
+FILEPATH = os.getenv("FILEPATH", os.path.join(MAIN_DIR, "helpers", "mock.xlsx"))
+TABLE = os.getenv("TABLE", "project")
