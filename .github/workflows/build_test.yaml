@@ -27,7 +27,12 @@ jobs:
         # pip install -r requirements.txt
         pip install pandas
         pip install pylint
+        pip install mypy
 
-    - name: Analysing the code with pylint
+    - name: Run pylint
       run: |
         pylint $(git ls-files '*.py')
+
+    - name: Run mypy
+      run: |
+        mypy $(git ls-files '*.py')
