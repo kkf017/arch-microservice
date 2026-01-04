@@ -68,6 +68,6 @@ def writer(filename: str, x: pandas.DataFrame) -> None:
             # raise Exception("\033[0;33m\n[-]Error: Unknown type of file.\033[0m")
 
 
-def from_db_to_dataframe(x: List[Tuple[str]], columns: List[str]) -> None:
+def from_db_to_dataframe(x: List[Tuple[str]], columns: List[str]) -> pandas.DataFrame:
     """Function to convert list (of tuples) into dataframes (pandas)."""
     return pandas.DataFrame(x, columns=columns)
