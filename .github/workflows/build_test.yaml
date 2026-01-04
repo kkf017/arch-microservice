@@ -28,6 +28,7 @@ jobs:
         pip install pandas
         pip install pylint
         pip install mypy
+        python3 -m pip install pandas-stubs
 
     - name: Run pylint
       run: |
