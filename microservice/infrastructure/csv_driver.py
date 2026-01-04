@@ -1,8 +1,8 @@
 """Module to manage xlsx,csv files."""
 
 import csv
-import pandas
 from typing import List, Tuple
+import pandas
 from microservice.logging_module.handler import logger
 
 
@@ -44,14 +44,14 @@ def reader(filename: str) -> pandas.DataFrame:
     return res
 
 
-def _write_csv(filename: str, X: pandas.DataFrame) -> None:
+def _write_csv(filename: str, x: pandas.DataFrame) -> None:
     """Subfunction to write a file (csv)."""
-    X.to_csv(filename, index=False)
+    x.to_csv(filename, index=False)
 
 
-def _write_xlsx(filename: str, X: pandas.DataFrame) -> None:
+def _write_xlsx(filename: str, x: pandas.DataFrame) -> None:
     """Subfunction to write a file (xlsx)."""
-    X.to_excel(filename, index=False)
+    x.to_excel(filename, index=False)
 
 
 def writer(filename: str, x: pandas.DataFrame) -> None:

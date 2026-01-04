@@ -7,7 +7,6 @@ INFO = "%(asctime)s | \033[0;32m %(levelname)s \033[0m  | %(message)s"
 WARNING = "%(asctime)s | \033[0;33m %(levelname)s \033[0m | %(message)s"
 ERROR = "%(asctime)s | \033[0;31m %(levelname)s \033[0m | %(message)s"
 CRITICAL = "%(asctime)s | \033[0;35m %(levelname)s \033[0m | %(message)s"
-# CRITICAL = "%(asctime)s | \033[0;35m %(levelname)s \033[0m | %(filename)s:%(lineno)s | %(message)s"
 DATE = "%Y-%m-%d %H:%M:%S"
 
 class Logger:
@@ -16,6 +15,7 @@ class Logger:
         self,
     ):
         self.logger = logging.getLogger(__name__)
+        self.handler = None
         self.set_stream_handler()
 
     def set_level(self, level: int) -> None:
