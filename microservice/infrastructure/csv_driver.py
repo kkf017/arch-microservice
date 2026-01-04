@@ -40,7 +40,7 @@ def reader(filename: str) -> pandas.DataFrame:
         case _:
             # print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
             logger.error("Error: Unknown type of file.")
-            raise Exception("Error: Unknown type of file.")
+            # raise Exception("Error: Unknown type of file.")
     return res
 
 
@@ -59,13 +59,13 @@ def writer(filename: str, x: pandas.DataFrame) -> None:
     filetype = filename.split(".")[-1]
     match filetype:
         case "csv":
-             _write_csv(filename, x)
+            _write_csv(filename, x)
         case "xlsx":
             _write_xlsx(filename, x)
         case _:
             # print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
             logger.error("Error: Unknown type of file.")
-            raise Exception("\033[0;33m\n[-]Error: Unknown type of file.\033[0m")
+            # raise Exception("\033[0;33m\n[-]Error: Unknown type of file.\033[0m")
 
 
 def from_db_to_dataframe(x: List[Tuple[str]], columns: List[str]) -> None:

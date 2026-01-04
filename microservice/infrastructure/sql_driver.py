@@ -1,12 +1,12 @@
 """Module to manage sql."""
 
-import os
 import sqlite3
 import hashlib
 from typing import List, Tuple, Any
 from microservice.logging_module.handler import logger
 
-def sha1(x:str) -> str:
+
+def sha1(x: str) -> str:
     """Function to generate a hash."""
     return (hashlib.sha1(x.encode())).hexdigest()
 
@@ -19,7 +19,7 @@ def get_columns_name(database: str, table: str) -> List[str]:
         cursor = db.execute(f"""SELECT * FROM {table};""")
         columns = list(map(lambda x: x[0], cursor.description))
         db.close()
-    except Exception as err:
+    except FileNotFoundError as err:
         logger.error(f"Error sql get columns name: {err}")
     return columns
 
@@ -34,6 +34,6 @@ def request(database: str, value: str) -> List[Tuple[Any]]:
         x = list(rows)
         db.commit()
         db.close()
-    except Exception as err:
+    except FileNotFoundError as err:
         logger.error(f"Error sql request: {err}")
     return x

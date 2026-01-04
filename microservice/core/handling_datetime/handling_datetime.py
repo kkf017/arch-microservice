@@ -10,7 +10,7 @@ def check_datetime_files() -> bool:
 
     if os.path.exists(FILEPATH):
         last_modif_db = os.path.getmtime(DATABASE)
-        #last_create_db = os.path.getctime(DATABASE)
+        # last_create_db = os.path.getctime(DATABASE)
         last_modif_file = os.path.getmtime(FILEPATH)
 
         last_create_file = os.path.getctime(FILEPATH)

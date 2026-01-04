@@ -9,8 +9,10 @@ ERROR = "%(asctime)s | \033[0;31m %(levelname)s \033[0m | %(message)s"
 CRITICAL = "%(asctime)s | \033[0;35m %(levelname)s \033[0m | %(message)s"
 DATE = "%Y-%m-%d %H:%M:%S"
 
+
 class Logger:
     """Class to manage logging."""
+
     def __init__(
         self,
     ):
