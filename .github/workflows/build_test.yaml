@@ -50,6 +50,14 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install pip-audit
+        run: pip install pip-audit
+
+      - name: Run pip-audit
+        run: |
+           pip-audit -r ${{ github.workspace }}/requirements.txt --fix
+
       - name: Bandit Scan
         uses: shundor/python-bandit-scan@ab1d87dfccc5a0ffab88be3aaac6ffe35c10d6cd
         with: # optional arguments
