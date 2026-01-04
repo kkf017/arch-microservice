@@ -57,17 +57,15 @@ def _write_xlsx(filename: str, x: pandas.DataFrame) -> None:
 def writer(filename: str, x: pandas.DataFrame) -> None:
     """Function to write a file (csv/xlsx)."""
     filetype = filename.split(".")[-1]
-    res = pandas.DataFrame([])
     match filetype:
         case "csv":
-            res = _write_csv(filename, x)
+             _write_csv(filename, x)
         case "xlsx":
-            res = _write_xlsx(filename, x)
+            _write_xlsx(filename, x)
         case _:
             # print(f"\033[0;33m\n[-]Error: Unknown type of file.\033[0m", file=sys.stderr)
             logger.error("Error: Unknown type of file.")
             raise Exception("\033[0;33m\n[-]Error: Unknown type of file.\033[0m")
-    return res
 
 
 def from_db_to_dataframe(x: List[Tuple[str]], columns: List[str]) -> None:

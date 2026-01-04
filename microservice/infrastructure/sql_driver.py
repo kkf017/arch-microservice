@@ -6,7 +6,9 @@ import hashlib
 from typing import List, Tuple, Any
 from microservice.logging_module.handler import logger
 
-HASH = lambda x: (hashlib.sha1(x.encode())).hexdigest()
+def sha1(x:str) -> str:
+    """Function to generate a hash."""
+    return (hashlib.sha1(x.encode())).hexdigest()
 
 
 def get_columns_name(database: str, table: str) -> List[str]:

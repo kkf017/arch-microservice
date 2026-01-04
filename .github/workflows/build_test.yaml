@@ -25,6 +25,9 @@ jobs:
         #update-setuptools: "false"
         #update-wheel: "false"
 
+    - name: Install libraries
+      run: pip install pandas
+
     - name: Install Pylint
       run: pip install pylint
 
